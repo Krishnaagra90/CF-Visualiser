@@ -1,16 +1,37 @@
-# React + Vite
+# CF-Visualiser
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CP Profile Analyzer is a React app that analyzes a Codeforces profile and displays performance insights in a Codeforces-inspired UI.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Search any Codeforces handle
+- View user rating, rank, max rating, contribution, and profile details
+- Count unique solved problems
+- Group solved problems by rating
+- Group solved problems by topic/tag
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- JavaScript
+- Codeforces API
+- CSS
 
-## Expanding the ESLint configuration
+## APIs Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `https://codeforces.com/api/user.info`
+- `https://codeforces.com/api/user.status`
+
+## Run Locally
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
