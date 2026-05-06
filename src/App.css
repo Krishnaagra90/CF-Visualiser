@@ -1,0 +1,383 @@
+/* Codeforces-style compact UI */
+:root {
+  --cf-page: #f4f4f4;
+  --cf-panel: #ffffff;
+  --cf-panel-head: #f5f5f5;
+  --cf-border: #b9b9b9;
+  --cf-border-soft: #d9d9d9;
+  --cf-text: #222222;
+  --cf-muted: #666666;
+  --cf-blue: #1f5ea8;
+  --cf-link: #1858a8;
+  --cf-danger: #c02b2b;
+  --cf-success: #008000;
+  --cf-shadow: rgba(0, 0, 0, 0.08);
+  --cf-sans: Arial, Helvetica, sans-serif;
+  --cf-mono: "Courier New", Courier, monospace;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 0 14px 40px;
+  background:
+    linear-gradient(#ffffff 0, #f7f7f7 86px, var(--cf-page) 86px),
+    var(--cf-page);
+  color: var(--cf-text);
+  font-family: var(--cf-sans);
+  text-align: left;
+}
+
+.app-header {
+  width: min(980px, 100%);
+  margin: 0 auto 14px;
+  padding: 18px 0 10px;
+  border-bottom: 1px solid var(--cf-border);
+}
+
+.app-header h1 {
+  margin: 0;
+  color: #222222;
+  font-size: 2.15rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.app-header h1::first-letter {
+  color: #b72222;
+}
+
+.app-content {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px;
+  background: var(--cf-panel);
+  border: 1px solid var(--cf-border);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px var(--cf-shadow);
+  box-sizing: border-box;
+}
+
+.search-input,
+.search-button {
+  border-radius: 3px;
+  font-family: var(--cf-sans);
+  font-size: 0.9rem;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  padding: 5px 8px;
+  border: 1px solid #aaa;
+  background: #ffffff;
+  color: var(--cf-text);
+  box-sizing: border-box;
+}
+
+.search-input:focus {
+  outline: 1px solid #7ca9d6;
+  border-color: #6b99c8;
+}
+
+.search-button {
+  height: 32px;
+  padding: 0 18px;
+  border: 1px solid #8d8d8d;
+  background: linear-gradient(#ffffff, #e6e6e6);
+  color: #222222;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  border-color: #666666;
+  background: linear-gradient(#ffffff, #dcdcdc);
+}
+
+.status-panel {
+  min-height: 20px;
+}
+
+.loader,
+.error-message {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.loader {
+  color: var(--cf-blue);
+}
+
+.error-message {
+  color: var(--cf-danger);
+}
+
+.profile-card,
+.stats-card {
+  width: 100%;
+  overflow: hidden;
+  background: var(--cf-panel);
+  border: 1px solid var(--cf-border);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px var(--cf-shadow);
+  box-sizing: border-box;
+}
+
+.panel-title,
+.stats-card h3 {
+  margin: 0;
+  padding: 6px 9px;
+  background: var(--cf-panel-head);
+  border-bottom: 1px solid var(--cf-border);
+  color: #333333;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.profile-card-body {
+  display: grid;
+  grid-template-columns: 165px 1fr;
+  gap: 16px;
+  padding: 12px;
+}
+
+.profile-photo-wrap {
+  display: flex;
+  align-items: flex-start;
+}
+
+.profile-photo {
+  width: 150px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--cf-border-soft);
+  background: #eeeeee;
+}
+
+.profile-main {
+  min-width: 0;
+}
+
+.profile-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.profile-handle {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.profile-rank {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.profile-rating-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px 8px;
+  margin-bottom: 12px;
+  color: var(--cf-muted);
+  font-size: 0.92rem;
+}
+
+.profile-rating-line strong {
+  color: var(--cf-text);
+}
+
+.profile-max-rank {
+  font-weight: 700;
+}
+
+.profile-table {
+  display: grid;
+  border-top: 1px solid var(--cf-border-soft);
+  border-left: 1px solid var(--cf-border-soft);
+}
+
+.profile-row {
+  display: grid;
+  grid-template-columns: minmax(115px, 34%) 1fr;
+  min-height: 30px;
+  border-bottom: 1px solid var(--cf-border-soft);
+}
+
+.profile-label,
+.profile-value {
+  padding: 7px 8px;
+  font-size: 0.9rem;
+}
+
+.profile-label {
+  background: #f8f8f8;
+  border-right: 1px solid var(--cf-border-soft);
+  color: var(--cf-muted);
+  font-weight: 700;
+}
+
+.profile-value {
+  color: var(--cf-text);
+  word-break: break-word;
+}
+
+.stats-card-header {
+  display: contents;
+}
+
+.stats-summary {
+  display: block;
+  padding: 9px 10px 0;
+  color: var(--cf-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 10px;
+}
+
+.stats-box {
+  overflow: hidden;
+  border: 1px solid var(--cf-border-soft);
+  border-radius: 3px;
+  background: #ffffff;
+}
+
+.stats-box h4 {
+  margin: 0;
+  padding: 6px 8px;
+  background: #f8f8f8;
+  border-bottom: 1px solid var(--cf-border-soft);
+  color: #333333;
+  font-size: 0.86rem;
+}
+
+.stats-box ul {
+  max-height: 320px;
+  overflow: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stats-box li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 6px 8px;
+  border-bottom: 1px solid #eeeeee;
+  color: var(--cf-text);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.stats-box li:nth-child(even) {
+  background: #fafafa;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 10px 8px;
+  color: var(--cf-muted);
+  font-size: 0.9rem;
+}
+
+/* Codeforces rating colors */
+.rank-newbie {
+  color: #808080;
+}
+
+.rank-pupil {
+  color: #008000;
+}
+
+.rank-specialist {
+  color: #03a89e;
+}
+
+.rank-expert {
+  color: #0000ff;
+}
+
+.rank-candidate-master {
+  color: #aa00aa;
+}
+
+.rank-master,
+.rank-international-master {
+  color: #ff8c00;
+}
+
+.rank-grandmaster,
+.rank-international-grandmaster {
+  color: #ff0000;
+}
+
+.rank-legendary-grandmaster {
+  color: #aa0000;
+}
+
+@media (max-width: 700px) {
+  .app-shell {
+    padding-inline: 8px;
+  }
+
+  .app-header h1 {
+    font-size: 1.65rem;
+  }
+
+  .search-bar,
+  .profile-card-body,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-bar {
+    display: grid;
+  }
+
+  .search-button {
+    width: 100%;
+  }
+
+  .profile-card-body {
+    gap: 10px;
+  }
+
+  .profile-photo {
+    width: 112px;
+  }
+
+  .profile-row {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-label {
+    border-right: 0;
+    border-bottom: 1px solid #eeeeee;
+  }
+}
