@@ -4,6 +4,7 @@ import ProfileCard from "./components/ProfileCard.jsx";
 import Loader from "./components/loader.jsx";
 import Error from "./components/error.jsx";
 import SolvedStats from "./components/SolvedStats.jsx";
+import CFHeatmap from "./components/CFHeatmap.jsx";
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -47,6 +48,7 @@ function App() {
       {error && <Error message={error} />}
       {userData && <ProfileCard user={userData} />}
       {userData && <SolvedStats handle={handle} />}
+      {userData && <CFHeatmap handle={handle} />}
     </div>
   );
 }
