@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>CP Profile Analyzer</h1>
+      <h1>CF Profile Analyzer</h1>
 
       <SearchBar onSearch={fetchUser} />
 
