@@ -4,7 +4,11 @@ import ProfileCard from "./components/ProfileCard.jsx";
 import Loader from "./components/loader.jsx";
 import Error from "./components/error.jsx";
 import SolvedStats from "./components/SolvedStats.jsx";
+<<<<<<< HEAD
 import CFHeatmap from "./components/CFHeatmap.jsx";
+=======
+import Graphs from "./components/Graphs.jsx";
+>>>>>>> b0da1cd (Commit)
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -45,10 +49,18 @@ function App() {
       <SearchBar onSearch={fetchUser} />
 
       {loading && <Loader />}
+
       {error && <Error message={error} />}
+
       {userData && <ProfileCard user={userData} />}
+
       {userData && <SolvedStats handle={handle} />}
+<<<<<<< HEAD
       {userData && <CFHeatmap handle={handle} />}
+=======
+
+      {userData && <Graphs handle={handle} />}
+>>>>>>> b0da1cd (Commit)
     </div>
   );
 }
