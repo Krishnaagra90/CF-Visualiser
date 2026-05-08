@@ -1,85 +1,70 @@
 import { useEffect, useState } from "react";
+
+function getHeatmapColor(count) {
+  if (!count) return "bg-gray-200";
+  if (count <= 2) return "bg-cyan-200";
+  if (count <= 5) return "bg-blue-400";
+  if (count <= 9) return "bg-blue-800";
+  return "bg-green-700";
+}
+
 function CFHeatmap({ handle }) {
-    const [countPerDay, setCountPerDay] = useState({});
+  const [countPerDay, setCountPerDay] = useState({});
 
-
-    useEffect(() => {
+  useEffect(() => {
     if (!handle) return;
 
     async function fetchData() {
-        const res = await fetch(`https://codeforces.com/api/user.status?handle=${handle}`);
-        const data = await res.json();
+      const res = await fetch(
+        `https://codeforces.com/api/user.status?handle=${handle}`
+      );
+      const data = await res.json();
 
-        if (data.status !== "OK") return;
+      if (data.status !== "OK") return;
 
-        const counts = {};
+      const counts = {};
 
-        data.result.forEach((submission) => {
-            if (submission.verdict === "OK") {
-                const date = new Date(submission.creationTimeSeconds * 1000);
-                const dateString = date.toLocaleDateString("en-CA");
+      data.result.forEach((submission) => {
+        if (submission.verdict === "OK") {
+          const date = new Date(submission.creationTimeSeconds * 1000);
+          const dateString = date.toLocaleDateString("en-CA");
 
-                if (counts[dateString]) {
-                    counts[dateString] = counts[dateString] + 1;
-                } else {
-                    counts[dateString] = 1;
-                }
-            }
-        });
+          counts[dateString] = (counts[dateString] || 0) + 1;
+        }
+      });
 
-        setCountPerDay(counts);
-    }                          
+      setCountPerDay(counts);
+    }
 
-    if (handle) fetchData();
+    fetchData();
+  }, [handle]);
 
-}, [handle]);                  //  useEffect ends
-
-
-    
-
-
-    const last365Days = [];
-    for (let i = 364; i >= 0; i--) {
+  const last365Days = [];
+  for (let i = 364; i >= 0; i--) {
     const date = new Date();
     date.setDate(date.getDate() - i);
-    const dateString = date.toLocaleDateString("en-CA");
-    last365Days.push(dateString);
-}
-
-  
-
-
-
-
-
-function colourMap(count) {
-    if (!count) return "#ebedf0";
-    if (count <= 2) return "#6fd5efff";
-    if (count <= 5) return "#3c567fff";
-    if (count <= 9) return "#061a69ff";
-    return "#216e39";
+    last365Days.push(date.toLocaleDateString("en-CA"));
   }
 
+  return (
+    <section className="overflow-hidden rounded border border-gray-300 bg-white shadow-sm">
+      <h3 className="border-b border-gray-300 bg-gray-50 px-4 py-2 text-sm font-bold text-gray-800">
+        Submission heatmap
+      </h3>
 
-return (
-    <div style={{ padding: "20px" }}>
-      <h3>Submission Heatmap</h3>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
+      <div className="flex flex-wrap gap-[3px] p-4">
         {last365Days.map((day) => (
           <div
             key={day}
-            title={day + ": " + (countPerDay[day] || 0) + " solved"}
-            style={{
-              width: "12px",
-              height: "12px",
-              backgroundColor: colourMap(countPerDay[day]),
-              borderRadius: "2px",
-            }}
+            title={`${day}: ${countPerDay[day] || 0} solved`}
+            className={`h-3 w-3 rounded-[2px] ${getHeatmapColor(
+              countPerDay[day]
+            )}`}
           />
         ))}
       </div>
-    </div>
+    </section>
   );
-}                            //  CFHeatmap ends here
+}
 
 export default CFHeatmap;

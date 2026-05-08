@@ -1,6 +1,5 @@
-import React from "react";
 function Loader() {
-  return <p className="loader">Loading...</p>;
+  return <p className="text-sm font-semibold text-blue-700">Loading...</p>;
 }
 
 export default Loader;

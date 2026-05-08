@@ -40,20 +40,36 @@ function App() {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>CF Profile Analyzer</h1>
+    <div className="min-h-screen bg-gray-100 px-4 py-6 text-gray-900">
+      <div className="mx-auto max-w-6xl">
+        <header className="mb-5 border-b border-gray-300 pb-4">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl">
+            <span className="text-red-700">CF</span> Profile Analyzer
+          </h1>
+          <p className="mt-1 text-sm text-gray-600">
+            Search a Codeforces handle to view profile, solved stats, heatmap,
+            and rating graph.
+          </p>
+        </header>
 
-      <SearchBar onSearch={fetchUser} />
+        <main className="space-y-5">
+          <SearchBar onSearch={fetchUser} />
 
-      {loading && <Loader />}
+          <div className="min-h-6">
+            {loading && <Loader />}
+            {error && <Error message={error} />}
+          </div>
 
-      {error && <Error message={error} />}
-
-      {userData && <ProfileCard user={userData} />}
-
-      {userData && <SolvedStats handle={handle} />}
-      {userData && <CFHeatmap handle={handle} />}
-      {userData && <Graphs handle={handle} />}
+          {userData && (
+            <div className="space-y-5">
+              <ProfileCard user={userData} />
+              <SolvedStats handle={handle} />
+              <CFHeatmap handle={handle} />
+              <Graphs handle={handle} />
+            </div>
+          )}
+        </main>
+      </div>
     </div>
   );
 }
